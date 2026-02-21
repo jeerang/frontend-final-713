@@ -1,11 +1,11 @@
 <template>
-  <div class="registration-layout animate-fade-in">
+  <div class="login-layout animate-fade-in">
     <!-- Left Panel: Form -->
     <div class="form-panel-wrapper">
-      <RegistrationForm />
+      <LoginForm />
     </div>
 
-    <!-- Right Panel: Decoration/Hero -->
+    <!-- Right Panel: Hero -->
     <div class="hero-panel-wrapper">
       <RegistrationHero />
     </div>
@@ -13,12 +13,12 @@
 </template>
 
 <script setup lang="ts">
-import RegistrationForm from '../components/RegistrationForm.vue';
+import LoginForm from '../components/LoginForm.vue';
 import RegistrationHero from '../components/RegistrationHero.vue';
 </script>
 
 <style scoped>
-.registration-layout {
+.login-layout {
   display: flex;
   min-height: 100vh;
   width: 100%;
@@ -53,16 +53,17 @@ import RegistrationHero from '../components/RegistrationHero.vue';
   overflow: hidden;
 }
 
-/* Responsive layout: stack columns on smaller screens */
+/* Responsive */
 @media (max-width: 1024px) {
-  .registration-layout {
+  .login-layout {
     flex-direction: column;
   }
   .hero-panel-wrapper {
-    display: none; /* simple hide for mobile, focus on form */
+    display: none;
   }
   .form-panel-wrapper {
     padding: 1.5rem;
+    min-height: 100vh;
   }
 }
 </style>
