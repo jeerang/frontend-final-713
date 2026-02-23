@@ -12,29 +12,31 @@
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
 
+    <!-- Illustration Background -->
+    <div class="illustration-wrapper scale-fade-in">
+      <img
+        v-if="imageLoaded"
+        src="/images/voting_illustration.svg"
+        alt="Voting Illustration"
+        class="illustration"
+        @error="handleImageError"
+      />
+      <div v-else class="illustration-fallback">
+        <svg viewBox="0 0 200 200" class="fallback-svg">
+          <rect x="50" y="60" width="100" height="80" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+          <rect x="60" y="50" width="80" height="20" rx="4" fill="rgba(255,255,255,0.2)"/>
+          <rect x="70" y="80" width="60" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
+          <rect x="70" y="95" width="60" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
+          <rect x="70" y="110" width="40" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
+          <circle cx="145" cy="55" r="12" fill="rgba(234, 33, 233, 0.4)"/>
+          <text x="100" y="170" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="12" font-family="Prompt">ระบบลงทะเบียน</text>
+        </svg>
+      </div>
+    </div>
+
     <!-- Main Content -->
     <div class="hero-content scale-fade-in">
-      <!-- Illustration -->
-      <div class="illustration-wrapper">
-        <img
-          v-if="imageLoaded"
-          src="/images/voting_illustration.svg"
-          alt="Voting Illustration"
-          class="illustration"
-          @error="handleImageError"
-        />
-        <div v-else class="illustration-fallback">
-          <svg viewBox="0 0 200 200" class="fallback-svg">
-            <rect x="50" y="60" width="100" height="80" rx="8" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
-            <rect x="60" y="50" width="80" height="20" rx="4" fill="rgba(255,255,255,0.2)"/>
-            <rect x="70" y="80" width="60" height="8" rx="4" fill="rgba(255,255,255,0.2)"/>
-            <rect x="70" y="95" width="60" height="8" rx="4" fill="rgba(255,255,255,0.15)"/>
-            <rect x="70" y="110" width="40" height="8" rx="4" fill="rgba(255,255,255,0.1)"/>
-            <circle cx="145" cy="55" r="12" fill="rgba(234, 33, 233, 0.4)"/>
-            <text x="100" y="170" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="12" font-family="Prompt">ระบบลงทะเบียน</text>
-          </svg>
-        </div>
-      </div>
+
 
       <!-- Stylized Text -->
       <div class="styled-text-block">
@@ -213,9 +215,9 @@ const handleImageError = () => {
 }
 
 .illustration {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
   opacity: 0.85;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 60%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9) 60%, transparent 100%);
@@ -250,6 +252,7 @@ const handleImageError = () => {
   text-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 40px rgba(139, 92, 246, 0.3);
   margin-left: -12rem;
   transform: rotate(-5deg);
+  margin-bottom: 25rem;
 }
 
 .crazy-text {
@@ -260,6 +263,7 @@ const handleImageError = () => {
   margin-top: -2.5rem;
   z-index: 2;
   transform: rotate(-10deg);
+  display:none;
 }
 
 .vote-text {
@@ -271,6 +275,7 @@ const handleImageError = () => {
   margin-top: -3.5rem;
   margin-left: 8rem;
   transform: rotate(-2deg);
+  display: none;
 }
 
 /* Floating animations for text */
