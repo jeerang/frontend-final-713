@@ -23,6 +23,10 @@ const router = createRouter({
                     component: () => import('../presentation/views/dashboard/UserProfileView.vue'),
                 },
                 {
+                    path: 'system',
+                    redirect: '/dashboard/system/constituencies',
+                },
+                {
                     path: 'system/constituencies',
                     name: 'system-constituencies',
                     component: () => import('../presentation/views/dashboard/ManageConstituenciesView.vue'),
@@ -38,9 +42,42 @@ const router = createRouter({
                     component: () => import('../presentation/views/dashboard/PoliticalPartiesView.vue'),
                 },
                 {
+                    path: 'parties/:id/members',
+                    name: 'admin-party-members',
+                    component: () => import('../presentation/views/dashboard/AdminPartyMembersView.vue'),
+                },
+                {
                     path: 'parties/candidates',
                     name: 'setup-candidates',
                     component: () => import('../presentation/views/dashboard/SetupCandidatesView.vue'),
+                },
+                {
+                    path: 'parties/public',
+                    name: 'parties-public',
+                    component: () => import('../presentation/views/dashboard/PublicPartiesView.vue'),
+                },
+                {
+                    path: 'parties/public/members',
+                    name: 'parties-members',
+                    component: () => import('../presentation/views/dashboard/PublicPartyMembersView.vue'),
+                },
+                {
+                    path: 'vote',
+                    redirect: '/dashboard/vote/cast',
+                },
+                {
+                    path: 'vote/cast',
+                    name: 'vote-cast',
+                    component: () => import('../presentation/views/dashboard/VoteView.vue'),
+                },
+                {
+                    path: 'vote/results',
+                    name: 'vote-results',
+                    component: () => import('../presentation/views/dashboard/VoteResultView.vue'),
+                },
+                {
+                    path: 'admin',
+                    redirect: '/dashboard/parties/candidates',
                 },
             ]
         }

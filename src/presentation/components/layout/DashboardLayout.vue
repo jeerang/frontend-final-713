@@ -17,10 +17,21 @@
     <!-- Sub Navigation -->
     <div v-if="hasSubNav" class="sub-nav">
       <div class="nav-container sub-nav-container">
+        <!-- Sub menu for 'ลงคะแนนเสียง' -->
+        <template v-if="isVoteActive">
+          <router-link to="/dashboard/vote/cast" class="sub-menu-item" exact-active-class="sub-menu-active">ลงคะแนนเสียง</router-link>
+          <router-link to="/dashboard/vote/results" class="sub-menu-item" exact-active-class="sub-menu-active">ดูผลคะแนน</router-link>
+        </template>
+        
         <!-- Sub menu for 'รายชื่อพรรค' -->
         <template v-if="isPartiesActive">
-          <router-link to="/dashboard/parties" class="sub-menu-item" exact-active-class="sub-menu-active">พรรคการเมือง</router-link>
-          <router-link to="/dashboard/parties/candidates" class="sub-menu-item" exact-active-class="sub-menu-active">ตั้งค่าผู้ลงสมัคร</router-link>
+          <router-link to="/dashboard/parties/public" class="sub-menu-item" exact-active-class="sub-menu-active">รายชื่อพรรคการเมือง (ผู้ใช้งานทั่วไป)</router-link>
+          <router-link to="/dashboard/parties" class="sub-menu-item" exact-active-class="sub-menu-active" exact>พรรคการเมือง (กกต.)</router-link>
+        </template>
+        
+        <!-- Sub menu for Admin Menu -->
+        <template v-if="isAdminActive">
+           <router-link to="/dashboard/parties/candidates" class="sub-menu-item" exact-active-class="sub-menu-active">รายชื่อผู้มีสิทธิ์ และตั้งค่าผู้ลงสมัคร</router-link>
         </template>
         
         <!-- Sub menu for 'จัดการระบบ' -->
@@ -48,10 +59,12 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
-const isPartiesActive = computed(() => route.path.startsWith('/dashboard/parties'));
+const isVoteActive = computed(() => route.path.startsWith('/dashboard/vote'));
+const isPartiesActive = computed(() => route.path.startsWith('/dashboard/parties') && !route.path.startsWith('/dashboard/parties/candidates'));
 const isSystemActive = computed(() => route.path.startsWith('/dashboard/system'));
+const isAdminActive = computed(() => route.path.startsWith('/dashboard/admin') || route.path.startsWith('/dashboard/parties/candidates'));
 
-const hasSubNav = computed(() => isPartiesActive.value || isSystemActive.value);
+const hasSubNav = computed(() => isPartiesActive.value || isSystemActive.value || isVoteActive.value || isAdminActive.value);
 </script>
 
 <style scoped>
